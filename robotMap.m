@@ -5,7 +5,7 @@ clc;
 
 vector_x = [];
 vector_y = [];
-max_grid = 20;
+max_grid = 26;
 
 
 figure(1);
@@ -20,7 +20,7 @@ end
 
 grid = zeros(max_grid, max_grid);
 
-elemente_ref = round(length(obs.x)/max_grid) - 1;
+elemente_ref = round(length(obs.x)/max_grid);
 
 
 y_start = 1;
@@ -56,15 +56,15 @@ grid = grid ./ max(grid(:));
 
 % disp(grid);
 
-for j = 1:max_grid
-    aux_i = max_grid;
-    for i = 1:max_grid/2
-        aux = grid(i,j);
-        grid(i,j) = grid(aux_i, j);
-        grid(aux_i, j) = aux;
-        aux_i = aux_i - 1;
-    end
-end
+% for j = 1:max_grid
+%     aux_i = max_grid;
+%     for i = 1:max_grid/2
+%         aux = grid(i,j);
+%         grid(i,j) = grid(aux_i, j);
+%         grid(aux_i, j) = aux;
+%         aux_i = aux_i - 1;
+%     end
+% end
 
 % disp(grid);
 
