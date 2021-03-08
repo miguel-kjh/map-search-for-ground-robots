@@ -8,19 +8,11 @@ vector_y = [];
 siseGrid = 26;
 
 
-figure(1);
-hold on;
-plot(pos.x,pos.y);
-
-for i = 1:length(obs.x)
-    obs_x = obs.x{i};
-    obs_y = obs.y{i};
-    plot(obs_x, obs_y, '.');
-end
+plotMap2D(pos, obs);
 
 grid = discretizeMap(obs, siseGrid);
 
+plotMap3D(grid);
 
-figure(2);
 
-surf(grid);
+
