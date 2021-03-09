@@ -14,5 +14,7 @@ grid = discretizeMap(obs, sizeGrid);
 
 plotMap3D(grid);
 
+writematrix(grid,'map.csv') 
+
 
 
