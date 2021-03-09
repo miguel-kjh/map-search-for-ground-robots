@@ -5,12 +5,12 @@ clc;
 
 vector_x = [];
 vector_y = [];
-siseGrid = 26;
+sizeGrid = 26;
 
 
 plotMap2D(pos, obs);
 
-grid = discretizeMap(obs, siseGrid);
+grid = discretizeMap(obs, sizeGrid);
 
 plotMap3D(grid);
 

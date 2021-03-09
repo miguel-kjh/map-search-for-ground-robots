@@ -17,7 +17,11 @@ function [grid] = discretizeMap(obs, sizeMap)
                     obs_x = obs.x{position_x};
                     obs_y = obs.y{position_y};
                     for index = 1:length(obs_x)
-                        if ~isnan(obs_x(index)) && ~isnan(obs_y(index))
+                        if ~isnan(obs_x(index))
+                            grid(i,j) = grid(i,j) + 1;
+                        end
+                        
+                        if ~isnan(obs_y(index))
                             grid(i,j) = grid(i,j) + 1;
                         end
                     end
@@ -40,11 +44,11 @@ function [grid] = discretizeMap(obs, sizeMap)
     %     end
     % end
     
-    normalizeGrid(grid)
+    grid = normalizeGrid(grid);
     
 end
 
-function [] = normalizeGrid(grid)
+function [grid] = normalizeGrid(grid)
     grid = grid - min(grid(:));
     grid = grid ./ max(grid(:));
 end
