@@ -28,14 +28,14 @@ function [] = findPath(grid, start, final)
         
         if (point1 - 1) > 0 && (point2 - 1) > 0
               
-            if grid(point1, (point2 -1) ) == 0 && grid(point1, (point2 +1) ) ~= 1
+            if grid(point1, (point2 -1) ) == 0 
                 
                 grid(point1, (point2 -1) ) = cost + 1;
                 list = cat(1,list,[point1, (point2 -1), (cost + 1) ]);
                 
             end
             
-            if  grid( (point1 - 1), point2) == 0 && grid(point1, (point2 +1) ) ~= 1
+            if  grid( (point1 - 1), point2) == 0 
                 
                 grid( (point1 - 1), point2) = cost + 1;
                 list = cat(1,list,[(point1-1),point2 , (cost + 1)]);
@@ -50,14 +50,14 @@ function [] = findPath(grid, start, final)
         
         if (point1 + 1) <26 && (point2 + 1)  < 26
             
-             if grid(point1, (point2 +1) ) == 0 && grid(point1, (point2 +1) ) ~= 1
+             if grid(point1, (point2 +1) ) == 0 
                  
                 grid(point1, (point2 +1) ) = cost + 1; 
                 list = cat(1,list,[point1,(point2 +1) , (cost + 1) ]);
                 
              end
             
-             if  grid( (point1 + 1), point2) == 0 && grid(point1, (point2 +1) ) ~= 1
+             if  grid( (point1 + 1), point2) == 0 
                  
                  grid( (point1 + 1), point2) = cost + 1;
                  list = cat(1,list,[(point1 + 1),point2, (cost + 1)]);
