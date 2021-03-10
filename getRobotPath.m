@@ -1,7 +1,9 @@
 clear all;
 clc;
+mapResultFile = fullfile('results','map.csv');
 
-grid = readtable('map.csv');
+
+grid = readtable(mapResultFile);
 
 grid = grid{:,:};
 

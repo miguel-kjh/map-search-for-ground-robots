@@ -17,17 +17,17 @@ function [grid] = discretizeMap(obs, mapSize, worldSize)
         end
     end
     
-    % for j = 1:max_grid
-    %     aux_i = max_grid;
-    %     for i = 1:max_grid/2
-    %         aux = grid(i,j);
-    %         grid(i,j) = grid(aux_i, j);
-    %         grid(aux_i, j) = aux;
-    %         aux_i = aux_i - 1;
-    %     end
-    % end
+%     for j = 1:mapSize
+%         aux_i = mapSize;
+%         for i = 1:mapSize/2
+%             aux = grid(i,j);
+%             grid(i,j) = grid(aux_i, j);
+%             grid(aux_i, j) = aux;
+%             aux_i = aux_i - 1;
+%         end
+%     end
     
-    grid = normalizeGrid(grid);
+    grid = normalizeGrid(grid.');
     
 end
 
