@@ -5,10 +5,11 @@ grid = readtable('map.csv');
 
 grid = grid{:,:};
 
-grid(grid>0.85) = 1;
-grid(grid<0.85) = 0;
+grid(grid~=0) = 1;
 
-findPath(grid, [22 5], [10 10])
+pcolor(grid)
+
+%findPath(grid, [22 5], [10 10])
 
 function [] = findPath(grid, start, final)
 

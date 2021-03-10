@@ -1,20 +1,23 @@
 clear all;
 clc;
 
-[pos, obs] = ExtractPathScans('mydata2021_03_02_17_13_30.log',pi/4);
+filename   = fullfile('data','mydata2021_03_02_17_13_30.log');
+mapResultFile = fullfile('results','map.csv');
+[pos, obs] = ExtractPathScans(filename,pi/4);
 
-vector_x = [];
-vector_y = [];
-sizeGrid = 26;
+vector_x  = [];
+vector_y  = [];
+mapSize   = 20;
+worldSize = 16;
 
 
 plotMap2D(pos, obs);
 
-grid = discretizeMap(obs, sizeGrid);
+grid = discretizeMap(obs, mapSize, worldSize);
 
 plotMap3D(grid);
 
-writematrix(grid,'map.csv') 
+csvwrite(mapResultFile, grid);
 
 
 
