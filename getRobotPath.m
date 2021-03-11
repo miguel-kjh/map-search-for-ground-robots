@@ -1,5 +1,6 @@
-clear all;
 clc;
+clear all;
+
 mapResultFile = fullfile('results','map.csv');
 
 
