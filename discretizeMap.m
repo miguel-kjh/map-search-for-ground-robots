@@ -11,7 +11,7 @@ function [grid] = discretizeMap(obs, mapSize, worldSize)
         yv = yobs{c};
         for k=1:length(xv)
             if ~isnan(xv(k)) && ~isnan(yv(k))
-               [i,j] = getMapCell(xv(k), yv(k), mapSize, worldSize, dimCell);
+               [i,j] = getMapCell(xv(k), yv(k), worldSize, dimCell);
                grid(i,j) = grid(i,j) + 1;  
             end
         end
@@ -25,10 +25,10 @@ function [grid] = normalizeGrid(grid)
     grid = grid ./ max(grid(:));
 end
 
-function [i,j] = getMapCell(x, y, ncell, world_size, dimCell)
+function [i,j] = getMapCell(x, y, worldSize, dimCell)
 
-    if x > world_size; x = world_size; end
-    if y > world_size; y = world_size; end
+    if x > worldSize; x = worldSize; end
+    if y > worldSize; y = worldSize; end
     if x < 0; x = 1; end
     if y < 0; y = 1; end
     

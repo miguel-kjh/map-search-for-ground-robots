@@ -19,8 +19,5 @@ plotMap3D(grid);
 
 csvwrite(mapResultFile, grid);
 
-figure(3);
-pcolor(grid);
-
 
 
