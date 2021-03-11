@@ -6,12 +6,12 @@ function [grid] = discretizeMap(obs, mapSize, worldSize)
     yobs = obs.y;
     N = size(xobs, 2);
 
-    for c=1:N
-        xv = xobs{c};
-        yv = yobs{c};
-        for k=1:length(xv)
-            if ~isnan(xv(k)) && ~isnan(yv(k))
-               [i,j] = getMapCell(xv(k), yv(k), worldSize, dimCell);
+    for scan=1:N
+        xv = xobs{scan};
+        yv = yobs{scan};
+        for pos=1:length(xv)
+            if ~isnan(xv(pos)) && ~isnan(yv(pos))
+               [i,j] = getMapCell(xv(pos), yv(pos), worldSize, dimCell);
                grid(i,j) = grid(i,j) + 1;  
             end
         end
