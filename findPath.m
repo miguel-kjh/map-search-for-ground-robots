@@ -1,5 +1,3 @@
-% TODO: check if child point is not in list
-
 function [path, cost] = findPath(costMap, start, final, heuristic)
     worlSize = size(costMap,2);
     listDimension = worlSize*worlSize;

@@ -9,7 +9,7 @@ grid = readtable(mapResultFile);
 grid = grid{:,:};
 grid(grid~=0) = 1;
 start = [18, 6];
-final = [13, 2];
+final = [13, 16];
 heuritic = 'none';
 
 figure(1);
