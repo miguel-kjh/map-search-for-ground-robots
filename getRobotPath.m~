@@ -1,0 +1,29 @@
+clc;
+clear all;
+
+mapResultFile = fullfile('results','map.csv');
+
+
+grid = readtable(mapResultFile);
+
+grid = grid{:,:};
+grid(grid~=0) = 1;
+start = [15 10];
+final = [1, 1];
+
+figure(1);
+grid(start(2), start(1)) = 2;
+grid(final(2), final(1)) = -2;
+pcolor(grid);
+grid(start(2), start(1)) = 0;
+grid(final(2), final(1)) = 0;
+
+try
+    costMap = createCostMap(grid, start, final);
+catch exception
+    throw(exception)             % Line 5
+end
+
+figure(2);
+pcolor(costMap);
+

@@ -29,10 +29,10 @@ function [i,j] = getMapCell(x, y, worldSize, dimCell)
 
     if x > worldSize; x = worldSize; end
     if y > worldSize; y = worldSize; end
-    if x < 0; x = 1; end
-    if y < 0; y = 1; end
+    if x < 1; x = 1; end
+    if y < 1; y = 1; end
     
-    i = ceil(x/dimCell);
-    j = ceil(y/dimCell);
+    i = round(x/dimCell);
+    j = round(y/dimCell);
 end
 

@@ -3,20 +3,26 @@ function [costMap] = createCostMap(grid, start, final)
     initialCost = 2;
     costMap(final(2),final(1)) = initialCost;
     worlSize = size(grid,2);
-    listDimension = worlSize*worlSize;
+    listDimension = worlSize*worlSize
     
     list = zeros(listDimension, 3);
     listIndex = 1;
-    finalListIndex = listIndex + 1;
+    finallistIndex = listIndex + 1;
     list(listIndex,1) = final(1);
     list(listIndex,2) = final(2);
     list(listIndex,3) = initialCost;
+    list
+    
+    figure(1);
+    costMap(start(2), start(1)) = initialCost;
+    pcolor(costMap);
+    costMap(start(2), start(1)) = 0;
     
     evalPoint = [list(listIndex,1), list(listIndex,2)];
-%     figure(3);
-%     hold on;
+    figure(3);
+    hold on;
     
-    while(  ~( evalPoint(1) == start(1) && evalPoint(2) == start(2)))
+    while(  ~( evalPoint(1) == start(1) && evalPoint(2) == start(2)) || listIndex < listDimension)
         costFather = list(listIndex,3);
         costChild = costFather + 1;
         nearestNeighbors = get4nearestNeighbors(evalPoint);
@@ -27,18 +33,18 @@ function [costMap] = createCostMap(grid, start, final)
             
             if (x > 0 && y > 0) && (x <= worlSize && y <= worlSize) && costMap(y,x) == 0
                 costMap(y,x) = costChild;
-                list(finalListIndex,1) = x;
-                list(finalListIndex,2) = y;
-                list(finalListIndex,3) = costChild;
-                finalListIndex = finalListIndex + 1;
+                list(finallistIndex,1) = x;
+                list(finallistIndex,2) = y;
+                list(finallistIndex,3) = costChild;
+                finallistIndex = finallistIndex + 1;
             end
         end
         
         listIndex = listIndex + 1;
         evalPoint = [list(listIndex,1), list(listIndex,2)];
         
-%         pcolor(costMap);
-%         pause(0.2);
+        pcolor(costMap);
+        pause(1);
     end
 end
 
