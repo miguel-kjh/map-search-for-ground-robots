@@ -26,3 +26,5 @@ catch exception
     disp("map points not available");
 end
 
+path = findPath(costMap, start, final)
+
