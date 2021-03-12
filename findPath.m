@@ -1,6 +1,6 @@
 % TODO: check if child point is not in list
 
-function [path, cost] = findPath(costMap, start, final)
+function [path, cost] = findPath(costMap, start, final, heuristic)
     worlSize = size(costMap,2);
     listDimension = worlSize*worlSize;
     
@@ -24,7 +24,7 @@ function [path, cost] = findPath(costMap, start, final)
             if (x > 0 && y > 0) && (x <= worlSize && y <= worlSize) && costMap(y,x) > 1 && ~searchPoint(list, [x,y])
                 list(finalListIndex,1) = x;
                 list(finalListIndex,2) = y;
-                list(finalListIndex,3) = costMap(y,x) + evalPoint(3);
+                list(finalListIndex,3) = costMap(y,x) + evalPoint(3) + calculateHeuristic([x,y], final, heuristic);
                 list(finalListIndex,4) = listIndex;
                 finalListIndex = finalListIndex + 1;
             end
@@ -55,5 +55,15 @@ function [isPoint] = searchPoint(list, point)
         end
     end
     isPoint = false;
+end
+
+function [value] = calculateHeuristic(p1,p2,heuristic)
+    if heuristic == "euclidean"
+        value =  pdist2(p1,p2, 'euclidean');
+    elseif heuristic == "manhatan"
+        value =  sum(abs(p1-p2));
+    else
+        value = 0;
+    end
 end
 

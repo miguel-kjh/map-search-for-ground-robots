@@ -8,9 +8,9 @@ grid = readtable(mapResultFile);
 
 grid = grid{:,:};
 grid(grid~=0) = 1;
-start = [18, 16];
+start = [18, 6];
 final = [13, 2];
-heuritic = 'ecludian';
+heuritic = 'none';
 
 figure(1);
 grid(start(2), start(1)) = 2;
@@ -23,7 +23,7 @@ try
     costMap = createCostMap(grid, start, final);
     figure(2);
     pcolor(costMap);
-    [path,cost] = findPath(costMap, start, final);
+    [path,cost] = findPath(costMap, start, final, heuritic);
 
     figure(3);
     for i = 1:length(path)
