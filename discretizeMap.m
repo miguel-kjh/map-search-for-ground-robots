@@ -1,17 +1,18 @@
+
 function [grid] = discretizeMap(obs, mapSize, worldSize)
     grid = zeros(mapSize, mapSize);
     dimCell = worldSize/mapSize;
 
     xobs = obs.x;
     yobs = obs.y;
-    N = size(xobs, 2);
+    countReadings = length(xobs);
 
-    for scan=1:N
+    for scan=1:countReadings
         xv = xobs{scan};
         yv = yobs{scan};
         for pos=1:length(xv)
             if ~isnan(xv(pos)) && ~isnan(yv(pos))
-               [i,j] = getMapCell(xv(pos), yv(pos), worldSize, dimCell);
+               [i,j] = getMapCell(xv(pos), yv(pos), dimCell);
                grid(i,j) = grid(i,j) + 1;  
             end
         end
@@ -25,14 +26,11 @@ function [grid] = normalizeGrid(grid)
     grid = grid ./ max(grid(:));
 end
 
-function [i,j] = getMapCell(x, y, worldSize, dimCell)
-
-    if x > worldSize; x = worldSize; end
-    if y > worldSize; y = worldSize; end
-    if x < 1; x = 1; end
-    if y < 1; y = 1; end
-    
+function [i,j] = getMapCell(x, y, dimCell)
     i = round(x/dimCell);
     j = round(y/dimCell);
+    
+    if i < 1; i = 1; end
+    if j < 1; j = 1; end
 end
 

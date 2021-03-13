@@ -7,9 +7,8 @@ mapResultFile = fullfile('results','map.csv');
 
 vector_x  = [];
 vector_y  = [];
-mapSize   = 20;
+mapSize   = 25;
 worldSize = 16;
-
 
 plotMap2D(pos, obs);
 
