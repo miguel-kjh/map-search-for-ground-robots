@@ -14,9 +14,12 @@ plotMap2D(pos, obs);
 
 grid = discretizeMap(obs, mapSize, worldSize);
 
-plotMap3D(grid);
+plotMap3D(grid,2);
 
-csvwrite(mapResultFile, grid);
+% csvwrite(mapResultFile, grid);
 
+[probFilled,probEmpty] = conditionalProbability(pos, obs, mapSize,worldSize);
 
+plotMap3D(probFilled.',3);
 
+plotMap3D(probEmpty.',4);

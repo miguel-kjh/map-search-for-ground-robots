@@ -1,5 +1,5 @@
-function [] = plotMap3D(grid)
-    figure(2);
+function [] = plotMap3D(grid,n)
+    figure(n);
     surf(grid);
 end
 
