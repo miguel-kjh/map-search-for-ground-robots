@@ -13,8 +13,8 @@ function [probFilled,probEmpty] = conditionalProbability(pos, obs, mapSize,world
     yobs = obs.y;
     countReadings = length(xobs);
     
-    laserDistance = 13.5;
-    maxAngle = 180;
+    laserDistance = 12.5;
+    maxAngle = 90;
   
     % MIRAR EL CASO DONDE HaY VALORES NAN
     
@@ -31,17 +31,17 @@ function [probFilled,probEmpty] = conditionalProbability(pos, obs, mapSize,world
                angle = getAngleObject(i,j,robotI,robotJ);
                
                
-               if distance < 6
-  
-                   pEmpty  = (( (laserDistance-distance)/laserDistance )+ ((maxAngle-angle)/ maxAngle ))/2;
-                   pFilled =  1 - pEmpty;
-
-                   
-                   aux  = (pEmpty*probEmpty(i,j))/ ((pEmpty*probEmpty(i,j)) + (pFilled*probFilled(i,j)));
-                   probFilled(i,j) = (pFilled*probFilled(i,j))/ ((pFilled*probFilled(i,j)) +(pEmpty*probEmpty(i,j) ));
-                   probEmpty(i,j) = aux;
-                   
-               else
+%                if distance < 2
+%   
+%                    pEmpty  = (( (laserDistance-distance)/laserDistance )+ ((maxAngle-angle)/ maxAngle ))/2;
+%                    pFilled =  1 - pEmpty;
+% 
+%                    
+%                    aux  = (pEmpty*probEmpty(i,j))/ ((pEmpty*probEmpty(i,j)) + (pFilled*probFilled(i,j)));
+%                    probFilled(i,j) = (pFilled*probFilled(i,j))/ ((pFilled*probFilled(i,j)) +(pEmpty*probEmpty(i,j) ));
+%                    probEmpty(i,j) = aux;
+%                    
+%                else
                    
                    pFilled  = (( ( (laserDistance-distance)/laserDistance ) + ((maxAngle-angle)/ maxAngle ))  /2) * 0.98;
                    pEmpty =  1 - pFilled;
@@ -50,7 +50,7 @@ function [probFilled,probEmpty] = conditionalProbability(pos, obs, mapSize,world
                    probFilled(i,j) = (pFilled*probFilled(i,j))/ ((pFilled*probFilled(i,j)) +(pEmpty*probEmpty(i,j) ));
                    probEmpty(i,j) = aux;
                    
-               end
+%                end
                
             end
         end
