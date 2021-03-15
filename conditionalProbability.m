@@ -14,10 +14,7 @@ function [probFilled,probEmpty] = conditionalProbability(pos, obs, mapSize,world
     countReadings = length(xobs);
     
     laserDistance = 12.5;
-    maxAngle = 90;
-  
-    % MIRAR EL CASO DONDE HaY VALORES NAN
-    
+    maxAngle = 180;
     
     for scan=1:countReadings
         xv = xobs{scan};
@@ -30,28 +27,13 @@ function [probFilled,probEmpty] = conditionalProbability(pos, obs, mapSize,world
                distance = getEuclideanDistance(i,j,robotI,robotJ);
                angle = getAngleObject(i,j,robotI,robotJ);
                
-               
-%                if distance < 2
-%   
-%                    pEmpty  = (( (laserDistance-distance)/laserDistance )+ ((maxAngle-angle)/ maxAngle ))/2;
-%                    pFilled =  1 - pEmpty;
-% 
-%                    
-%                    aux  = (pEmpty*probEmpty(i,j))/ ((pEmpty*probEmpty(i,j)) + (pFilled*probFilled(i,j)));
-%                    probFilled(i,j) = (pFilled*probFilled(i,j))/ ((pFilled*probFilled(i,j)) +(pEmpty*probEmpty(i,j) ));
-%                    probEmpty(i,j) = aux;
-%                    
-%                else
-                   
                    pFilled  = (( ( (laserDistance-distance)/laserDistance ) + ((maxAngle-angle)/ maxAngle ))  /2) * 0.98;
                    pEmpty =  1 - pFilled;
                    
                    aux  = (pEmpty*probEmpty(i,j) )/ ((pEmpty*probEmpty(i,j)) + (pFilled*probFilled(i,j)));
                    probFilled(i,j) = (pFilled*probFilled(i,j))/ ((pFilled*probFilled(i,j)) +(pEmpty*probEmpty(i,j) ));
                    probEmpty(i,j) = aux;
-                   
-%                end
-               
+
             end
         end
     end
