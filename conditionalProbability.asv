@@ -14,7 +14,7 @@ function [probFilled,probEmpty] = conditionalProbability(pos, obs, mapSize,world
     countReadings = length(xobs);
     
     laserDistance = 13.5;
-    maxAngle = 180;
+    maxAngle = 90;
   
     % MIRAR EL CASO DONDE HaY VALORES NAN
     
@@ -37,18 +37,18 @@ function [probFilled,probEmpty] = conditionalProbability(pos, obs, mapSize,world
                    pFilled =  1 - pEmpty;
 
                    
-                   aux  = (pEmpty*probEmpty(i,j))/ ((pEmpty*probEmpty(i,j)) + (pFilled*probFilled(i,j)));
+                   probEmpty(i,j)  = (pEmpty*probEmpty(i,j))/ ((pEmpty*probEmpty(i,j)) + (pFilled*probFilled(i,j)));
                    probFilled(i,j) = (pFilled*probFilled(i,j))/ ((pFilled*probFilled(i,j)) +(pEmpty*probEmpty(i,j) ));
-                   probEmpty(i,j) = aux;
                    
                else
                    
-                   pFilled  = (( ( (laserDistance-distance)/laserDistance ) + ((maxAngle-angle)/ maxAngle ))  /2) * 0.98;
+                   pFilled  = (  (((laserDistance-distance)/laserDistance)+((maxAngle-angle)/maxAngle)) /2   ) * 0.98
+                   
+                   (( ( (laserDistance-distance)/laserDistance ) + ((maxAngle-angle)/ maxAngle ))  /2) * 0.98;
                    pEmpty =  1 - pFilled;
                    
-                   aux  = (pEmpty*probEmpty(i,j) )/ ((pEmpty*probEmpty(i,j)) + (pFilled*probFilled(i,j)));
+                   probEmpty(i,j)  = (pEmpty*probEmpty(i,j))/((pEmpty*probEmpty(i,j)) + (pFilled*probFilled(i,j)));
                    probFilled(i,j) = (pFilled*probFilled(i,j))/ ((pFilled*probFilled(i,j)) +(pEmpty*probEmpty(i,j) ));
-                   probEmpty(i,j) = aux;
                    
                end
                
