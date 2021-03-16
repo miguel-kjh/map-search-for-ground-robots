@@ -29,6 +29,7 @@ function [path, cost] = findPath(costMap, start, final, heuristic, nearest8Neigh
                 list(finalListIndex,3) = costMap(y,x) + evalPoint(3) + calculateHeuristic([x,y], final, heuristic);
                 list(finalListIndex,4) = listIndex;
                 finalListIndex = finalListIndex + 1;
+                
             end
         end
         

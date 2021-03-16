@@ -8,9 +8,10 @@ grid = readtable(mapResultFile);
 
 grid = grid{:,:};
 grid(grid~=0) = 1;
-start = [20, 30];
-final = [15, 16];
+start = [3, 3];
+final = [35, 15];
 heuritic = 'none';
+eigthsNeighbors = true;
 
 auxStart = grid(start(2), start(1));
 auxFinal = grid(final(2), final(1));
@@ -26,12 +27,12 @@ grid(final(2), final(1)) = auxFinal;
 
 try
     checkConstraints(grid, start, final)
-    costMap = createCostMap(grid, start, final, false);
+    costMap = createCostMap(grid, start, final, eigthsNeighbors);
     figure(2);
     pcolor(costMap);
-    [path,cost] = findPath(costMap, start, final, heuritic,false);
+    [path,cost] = findPath(costMap, start, final, heuritic, eigthsNeighbors);
     figure(3);
-    for i = 1:length(path)
+    for i = 1:size(path,1)
         grid(path(i,2), path(i,1)) = -2;
     end
     pcolor(grid);
