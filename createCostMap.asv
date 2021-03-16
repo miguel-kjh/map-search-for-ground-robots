@@ -1,5 +1,8 @@
 function [costMap] = createCostMap(grid, start, final)
 
+    if grid(start(1),)
+
+
     costMap = grid;
     initialCost = 2;
     costMap(final(2),final(1)) = initialCost;
@@ -20,7 +23,7 @@ function [costMap] = createCostMap(grid, start, final)
     while(  ~( evalPoint(1) == start(1) && evalPoint(2) == start(2)))
         costFather = list(listIndex,3);
         costChild = costFather + 1;
-        nearestNeighbors = get8nearestNeighbors(evalPoint);
+        nearestNeighbors = get4nearestNeighbors(evalPoint);
         
         for i=1:length(nearestNeighbors)
             x = nearestNeighbors(i,1);
@@ -42,7 +45,3 @@ function [costMap] = createCostMap(grid, start, final)
 %         pause(0.2);
     end
 end
-
-
-
-

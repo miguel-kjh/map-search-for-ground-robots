@@ -7,17 +7,17 @@ mapResultFile = fullfile('results','map.csv');
 
 vector_x  = [];
 vector_y  = [];
-mapSize   = 25;
+mapSize   = 50;
 worldSize = 16;
 
-% plotMap2D(pos, obs);
-% 
-% grid = discretizeMap(obs, mapSize, worldSize);
-% 
-% plotMap3D(grid,2);
-% 
-% csvwrite(mapResultFile, grid);
-% 
+plotMap2D(pos, obs);
+
+grid = discretizeMap(obs, mapSize, worldSize);
+
+plotMap3D(grid,2);
+
+csvwrite(mapResultFile, grid);
+
 [probFilled,probEmpty] = conditionalProbability(pos, obs, mapSize,worldSize);
 
 plotMap3D(probFilled.',3);

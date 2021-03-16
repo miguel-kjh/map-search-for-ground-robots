@@ -13,7 +13,7 @@ function [path, cost] = findPath(costMap, start, final, heuristic)
     evalPoint = list(listIndex,:);
 
     while(  ~( evalPoint(1) == final(1) && evalPoint(2) == final(2)))
-        nearestNeighbors = get4nearestNeighbors(evalPoint);
+        nearestNeighbors = get8nearestNeighbors(evalPoint);
         
         for i=1:length(nearestNeighbors)
             x = nearestNeighbors(i,1);
