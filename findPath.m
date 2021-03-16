@@ -1,4 +1,4 @@
-function [path, cost] = findPath(costMap, start, final, heuristic)
+function [path, cost] = findPath(costMap, start, final, heuristic, nearest8Neighbors)
     worlSize = size(costMap,2);
     listDimension = worlSize*worlSize;
     
@@ -13,7 +13,11 @@ function [path, cost] = findPath(costMap, start, final, heuristic)
     evalPoint = list(listIndex,:);
 
     while(  ~( evalPoint(1) == final(1) && evalPoint(2) == final(2)))
-        nearestNeighbors = get8nearestNeighbors(evalPoint);
+         if (nearest8Neighbors)
+            nearestNeighbors = get8nearestNeighbors(evalPoint);
+        else 
+            nearestNeighbors = get4nearestNeighbors(evalPoint);
+        end
         
         for i=1:length(nearestNeighbors)
             x = nearestNeighbors(i,1);
