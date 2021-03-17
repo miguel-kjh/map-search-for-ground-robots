@@ -9,8 +9,8 @@ grid = readtable(mapResultFile);
 grid = grid{:,:};
 grid(grid~=0) = 1;
 start = [3, 3];
-final = [40, 49];
-heuritic = 'nono';
+final = [100, 4];
+heuritic = 'none';
 eigthsNeighbors = true;
 
 auxStart = grid(start(2), start(1));
@@ -25,22 +25,24 @@ grid(final(2), final(1)) = auxFinal;
 
 
 
-try
-    checkConstraints(grid, start, final)
+% try
+    checkConstraints(grid, start, final);
     costMap = createCostMap(grid, start, final, eigthsNeighbors);
     figure(2);
     pcolor(costMap);
     [path,cost] = findPath(costMap, start, final, heuritic, eigthsNeighbors);
     figure(3);
-    for i = 1:length(path)
+    for i = 1:size(path,1)
         grid(path(i,2), path(i,1)) = -2;
     end
     pcolor(grid);
     fprintf('B&B-%s cost: %i\n',heuritic, cost);
-catch exception
-    disp("map points not available");
-    throw(exception);
-end
+% catch exception
+%     disp("map points not available");
+%     throw(exception);
+% end
+
+function plotInitia
 
 
 

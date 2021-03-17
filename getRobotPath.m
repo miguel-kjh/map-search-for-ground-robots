@@ -8,25 +8,14 @@ grid = readtable(mapResultFile);
 
 grid = grid{:,:};
 grid(grid~=0) = 1;
-start = [3, 3];
-final = [35, 15];
+start = [25, 24];
+final = [6, 47];
 heuritic = 'none';
 eigthsNeighbors = true;
 
-auxStart = grid(start(2), start(1));
-auxFinal = grid(final(2), final(1));
-
-figure(1);
-grid(start(2), start(1)) = 2;
-grid(final(2), final(1)) = -2;
-pcolor(grid);
-grid(start(2), start(1)) = auxStart;
-grid(final(2), final(1)) = auxFinal;
-
-
-
 try
-    checkConstraints(grid, start, final)
+    checkConstraints(grid, start, final);
+    plotInitialPoints(grid, start, final);
     costMap = createCostMap(grid, start, final, eigthsNeighbors);
     figure(2);
     pcolor(costMap);
@@ -38,8 +27,20 @@ try
     pcolor(grid);
     fprintf('B&B-%s cost: %i\n',heuritic, cost);
 catch exception
-    disp("map points not available");
+    disp("Can't find a path on the map");
     throw(exception);
+end
+
+function plotInitialPoints(grid, start, final)
+    auxStart = grid(start(2), start(1));
+    auxFinal = grid(final(2), final(1));
+
+    figure(1);
+    grid(start(2), start(1)) = 2;
+    grid(final(2), final(1)) = -2;
+    pcolor(grid);
+    grid(start(2), start(1)) = auxStart;
+    grid(final(2), final(1)) = auxFinal;
 end
 
 
