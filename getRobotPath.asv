@@ -10,31 +10,44 @@ grid = grid{:,:};
 grid(grid~=0) = 1;
 start = [3, 4];
 final = [48, 23];
-heuritic = 'manhatan';
-eigthsNeighbors = true;
+heuritic = 'none';
+eigthsNeighbors = false;
 
+for j = 1:10
+    grid = readtable(mapResultFile);
+
+    grid = grid{:,:};
+    grid(grid~=0) = 1;
+    tStart = tic;
 
   try
     
     checkConstraints(grid, start, final);
-    plotInitialPoints(grid, start, final);
+%     plotInitialPoints(grid, start, final);
     costMap = createCostMap(grid, start, final, eigthsNeighbors);
-    figure(2);
-    pcolor(costMap);
+%     figure(2);
+%     pcolor(costMap);
     [path,cost] = findPath(costMap, start, final, heuritic, eigthsNeighbors);
-    figure(3);
-    for i = 1:size(path,1)
-        grid(path(i,2), path(i,1)) = -2;
-    end
-    pcolor(grid);
+%     figure(3);
+%     for i = 1:size(path,1)
+%         grid(path(i,2), path(i,1)) = -2;
+%     end
+%     pcolor(grid);
     
-    fprintf('B&B-%s cost: %i\n',heuritic, cost);
+%     fprintf('B&B-%s cost: %i\n',heuritic, cost);
 catch exception
     disp("Can't find a path on the map");
     throw(exception);
 end  
 
+costArray(j,1) = toc(tStart);
+costArray(j,2) = cost;
 
+
+end
+
+mean(costArray)
+cos
 
 
 

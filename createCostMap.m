@@ -42,8 +42,6 @@ function [costMap] = createCostMap(grid, start, final, nearest8Neighbors)
         listIndex = listIndex + 1;
         evalPoint = [list(listIndex,1), list(listIndex,2)];
         
-%         pcolor(costMap);
-%         pause(0.2);
     end
 end
 
