@@ -65,7 +65,7 @@ end
 function [value] = calculateHeuristic(p1,p2,heuristic)
     if heuristic == "euclidean"
         value =  pdist2(p1,p2, 'euclidean');
-    elseif heuristic == "manhatan"
+    elseif heuristic == "manhattan"
         value =  sum(abs(p1-p2));
     else
         value = 0;
