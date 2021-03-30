@@ -4,9 +4,23 @@ This project is exploring map generation and path finding algorithms for robots 
 
 ## 🗺️ Discrete map
 
-We have made a uniform path over the entire map with Player/Stage and we have run the measurements with the laser sensor, resulting in the map in figure 1, which shows both the path of the agent and the collisions of the sensor with an obstacle or wall.
+We have made a uniform path over the entire map with Player/Stage and we have run the measurements with the laser sensor, which shows both the path of the agent and the collisions of the sensor with an obstacle or wall.
 
-Para crear el mapa de obstáculos recorremos el objeto obs tanto en X como en Y asignando las lecturas del sensor a la celda correspondiente de la nueva rejilla y sumándole 1 si existen lecturas para esa posición. Para la asignación utilizamos la función round  para redondear al número entero más cercano, las dimensiones del mapa que hemos elegido han sido de 50x50.
+<p align="center">
+  <img src="img/initial_map.png" alt="Initial map">
+</p>
+
+To create the obstacle map we traverse the obs object in both X and Y, assigning the sensor readings to the corresponding cell of the new grid and adding 1 if there are readings for that position. For the assignment we use the round function to round to the nearest whole number, the dimensions of the map we have chosen are 50x50.
+
+<p align="center">
+  <img src="img/3D_map.png" alt="3D map">
+</p>
+
+Below is a 2D representation of the start and end point of a possible route.
+
+<p align="center">
+  <img src="img/2D_map.png" alt="2D map">
+</p>
 
 ### Certainty grid
 
@@ -15,7 +29,15 @@ For the construction of the certainty grid for obstacles and free space, the Bay
 
 The probabilities provide a representation of the certainty about a grid[i][j] region, for which P(Occupied|s) and P(Empty|s) are calculated. In this case, to calculate these values, the region in which the reading is located must be taken into account in order to perform the calculations, the equations are as follows:
 
+<p align="center">
+  <img src="img/bayes_region.png" alt="Bayes region math">
+</p>
+
 In addition, it will be necessary to be able to combine the different readings at other points in time, so that the different observations that have been made will affect the grid. Bayes' rule can be used to calculate the new probability, applying it iteratively where the probability at time tn-1. becomes the a priori probability and is combined with the current observation.
+
+<p align="center">
+  <img src="img/bayes.png" alt="Bayes math">
+</p>
 
 ## 🔠 Cost graph
 
@@ -30,6 +52,10 @@ The cost map is nothing more than a graph where we have the cost on each edge of
 ### Branch and Bound
 
 The branching and bound algorithm can find the shortest path between two nodes with negative weights, simply by sorting the list by the cumulative cost of the predecessors and current nodes. To improve the search we have implemented two heuristics based on distances: [manhattan](https://en.wikipedia.org/wiki/Taxicab_geometry) and [euclidean](https://en.wikipedia.org/wiki/Euclidean_distance), between the node to be evaluated and the final node.
+
+<p align="center">
+  <img src="img/route.png" alt="Route with 8 neighbours">
+</p>
 
 ## Potential improvements
 
